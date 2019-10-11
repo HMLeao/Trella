@@ -51,23 +51,46 @@
     </nav>
     <!-- /navbar -->
 
-
+    <!-- tools -->
+    <nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm tools">
+      <ul class=" navbar-nav mr-4">
+        <li class="text-center table-name">
+            <span id="table-name">Trella</span>
+        </li>
+        <li class="nav-item t-item">
+            <a href="#" id="add-star" class="nav-link"><i class="far fa-star"></i></a>
+        </li>
+        <span class="divider"></span>
+        <li class="nav-item t-item">
+          <a href="#" id="board-type" class="nav-link">Pessoal</a>
+        </li>
+        <span class="divider"></span>
+        <li class="nav-item t-item">
+          <a href="#" id="visibility" class="nav-link">Particular</a>
+        </li>
+        <span class="divider"></span>
+        <li class="user-thumbnail info-perfil">
+          <svg width="2em" height="2em">
+            <circle cx=".9em" cy=".9em" r=".9em" fill="#DFE1E6"/>
+            <text x=".9em" y="1.25em" text-anchor="middle">HM</text>>
+          </svg>
+        </li>
+        <li class="nav-item t-item">
+          <a href="#" id="invite" class="nav-link">Convidar</a>
+        </li>
+      </ul>
+      <ul class="right-items navbar-nav">
+        <li class="nav-item t-item">
+          <a href="#" id="show-menu" class="nav-link">Mostrar Menu</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /tools -->
     <!-- main content -->
-    <div class="container  main-content">
-      <!-- tools -->
-      <nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm tools">
-          <ul class=" navbar-nav mr-4">
-            <li class="text-center table-name">
-                <span id="table-name">Trella</span>
-            </li>
-            <li class="nav-item t-item">
-                <a href="#" id="add-star" class="nav-link"><i class="far fa-star"></i></a>
-            </li>
-          </ul>
-      </nav>
-      <!-- /tools -->
-      <div class="row">
-        <div class="col-lg-3">
+    <div class="container-fluid  main-content">
+      <div class="row tables">
+        <div class="col-lg-2 t-item" id="add-list">
+            <a href="#" class="nav-link">Adicionar uma lista</a>
         </div>
       </div>
     </div>
