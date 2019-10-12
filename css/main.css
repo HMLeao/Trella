@@ -1,6 +1,7 @@
 body {
     /* background-color: rgba(137, 96, 158, 1); */
-    background-color: #B04632;
+    /* background-color: #B04632; */
+    background-color: rgba(0, 121, 191, 1);
     /* background-color: rgb(199, 211, 31); */
     color: white !important;}
 
@@ -100,7 +101,7 @@ body {
     cursor: pointer;
 } 
 
-.main-content {
+.board {
     position: fixed;
     top: 5.3em;
     left: 5px;
