@@ -3,7 +3,9 @@ body {
     /* background-color: #B04632; */
     background-color: rgba(0, 121, 191, 1);
     /* background-color: rgb(199, 211, 31); */
-    color: white !important;}
+    font-family: 'Cantarell', sans-serif;
+    color: white !important;
+}
 
 .navbar-top {
     background-color: rgba(5,5,5,0.15);
