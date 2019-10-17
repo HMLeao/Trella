@@ -66,6 +66,8 @@ signUpForm.addEventListener('submit',function(e) {
             signUpForm.style.display = 'none';
             changeMode.innerHTML = 'Ainda não tem conta? ';   // <- Tá esquisito isso. Código repetido!!!!
             change.innerHTML = 'Cadastre-se';
+        },function(response,status) {
+            alert('falha na operação! O serviço retornou código '+status);
         });
     }
     
@@ -92,15 +94,19 @@ loginForm.addEventListener('submit', function(e) {
         errorAlert.setAttribute('id','sign-in-error');
         errorAlert.innerHTML = 'Os campos são obrigatórios!';
         mainDiv.appendChild(errorAlert);
+    } else {
+        
     }
 });
 
-function postJsonData(url,jsonData,successCallback){
+function postJsonData(url,jsonData,successCallback,failcallback){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             successCallback(xhttp.responseText);
-        } 
+        } else if(xhttp.readyState == 4 && xhttp.status != 200) {
+            failcallback(xhttp.responseText,xhttp.status);
+        }
     }
     xhttp.open('POST',url);
     xhttp.setRequestHeader('Content-Type', 'application/json');
