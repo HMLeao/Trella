@@ -12,6 +12,7 @@ change.addEventListener('click',function(event) {
         signUpForm.style.display = 'block';
         this.innerHTML = 'Entrar';
         changeMode.innerHTML = 'Já é cadastrado? ';
+        document.getElementById('titulo').innerHTML = 'Cadastro';
         alertElement = document.getElementById('sign-in-error');
         if(alertElement) {
             alertElement.parentNode.removeChild(alertElement);
@@ -21,6 +22,7 @@ change.addEventListener('click',function(event) {
         signUpForm.style.display = 'none';
         changeMode.innerHTML = 'Ainda não tem conta? ';
         this.innerHTML = 'Cadastre-se';
+        document.getElementById('titulo').innerHTML = 'Fazer login';
         alertElement = document.getElementById('sign-up-success');
         if(alertElement) {
             alertElement.parentNode.removeChild(alertElement);
@@ -80,12 +82,12 @@ loginForm.addEventListener('submit', function(e) {
         name:'',
         password:''
     };
+    user.name = document.getElementById('username-login').value;
+    user.password = document.getElementById('password-login').value;
     var alertElement = document.getElementById('sign-in-error');
     if(alertElement) {
         alertElement.parentNode.removeChild(alertElement);
     }
-    user.name = document.getElementById('username-login').value;
-    user.password = document.getElementById('password-login').value;
     if(!user.name || !user.password) {
         var mainDiv = document.getElementById('main-content');
         var errorAlert = document.createElement('div');
@@ -95,7 +97,15 @@ loginForm.addEventListener('submit', function(e) {
         errorAlert.innerHTML = 'Os campos são obrigatórios!';
         mainDiv.appendChild(errorAlert);
     } else {
-        
+        //enviar dados
+        console.log(user);
+        postJsonData('https://tads-trello.herokuapp.com/api/trello/login',JSON.stringify(user),function(response) {
+            // pegar resposta
+            console.log(JSON.parse(response));
+            // verificar se recebeu o token
+        },function(response,status) {
+            console.log(response,status);
+        });        
     }
 });
 
