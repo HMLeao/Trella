@@ -24,8 +24,14 @@
     margin-top: 30px;
 }
 
-#change-to-signin a{
+#change-anchor {
     color: white;
     text-decoration: white;
     text-decoration-line: underline;
+}
+
+.success-alert {
+    position: fixed;
+    top: 40px;
+    right: 10px;
 }
