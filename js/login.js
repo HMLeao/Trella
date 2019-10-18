@@ -27,6 +27,10 @@ change.addEventListener('click',function(event) {
         if(alertElement) {
             alertElement.parentNode.removeChild(alertElement);
         }
+        alertElement = document.getElementById('sign-in-error');
+        if(alertElement) {
+            alertElement.parentNode.removeChild(alertElement);
+        }
     }
 });
 
@@ -76,13 +80,9 @@ signUpForm.addEventListener('submit',function(e) {
             ld.style.display = 'none';
             signUpForm.style.display = 'block';
             signUpForm.reset();
-            var mainDiv = document.getElementById('main-content');
-            var errorAlert = document.createElement('div');
-            errorAlert.classList.add('alert','alert-danger','success-alert');
-            errorAlert.setAttribute('role','alert');
-            errorAlert.setAttribute('id','sign-in-error');
-            errorAlert.innerHTML = 'Ocorreu um erro. Código '+status;
-            mainDiv.appendChild(errorAlert);
+            showErrorAlert(function() {
+                return 'Ocorreu um erro. Cód. '+status;
+            });
         });
     }
     
@@ -97,18 +97,15 @@ loginForm.addEventListener('submit', function(e) {
     };
     user.username = document.getElementById('username-login').value;
     user.password = document.getElementById('password-login').value;
+
     var alertElement = document.getElementById('sign-in-error');
     if(alertElement) {
         alertElement.parentNode.removeChild(alertElement);
     }
     if(!user.username || !user.password) {
-        var mainDiv = document.getElementById('main-content');
-        var errorAlert = document.createElement('div');
-        errorAlert.classList.add('alert','alert-danger','success-alert');
-        errorAlert.setAttribute('role','alert');
-        errorAlert.setAttribute('id','sign-in-error');
-        errorAlert.innerHTML = 'Os campos são obrigatórios!';
-        mainDiv.appendChild(errorAlert);
+        showErrorAlert(function() {
+            return 'Os campos são obrigatórios!';
+        })
     } else {
         //enviar dados
         console.log(user);
@@ -138,13 +135,28 @@ loginForm.addEventListener('submit', function(e) {
 
 
         },function(response,status) {
-            console.log(response,status);
+            var res = JSON.parse(response);
+            console.log(res.errors[0].message,status);
             ld.style.display = 'none';
             loginForm.style.display = 'block';
             loginForm.reset();
+            showErrorAlert(function () {
+                return res.errors[0].message;
+            })
         });        
     }
 });
+
+
+function showErrorAlert(cbkErrorMessage) {
+    var mainDiv = document.getElementById('main-content');
+    var errorAlert = document.createElement('div');
+    errorAlert.classList.add('alert','alert-danger','success-alert');
+    errorAlert.setAttribute('role','alert');
+    errorAlert.setAttribute('id','sign-in-error');
+    errorAlert.innerHTML = cbkErrorMessage();
+    mainDiv.appendChild(errorAlert);
+}
 
 function postJsonData(url,jsonData,successCallback,failcallback){
     var xhttp = new XMLHttpRequest();

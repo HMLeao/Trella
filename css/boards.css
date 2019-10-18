@@ -1,0 +1,18 @@
+.boards-list {
+    position: fixed;
+    top: 2.5em;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+.card {
+    background-color: rgba(138, 138, 138, 0.575);
+    color: rgba(255, 255, 255, 0.904);
+    transition: 150ms;
+}
+.card:hover {
+    cursor: pointer;
+    background-color: rgba(63, 63, 63, 0.5);
+}
+
