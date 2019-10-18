@@ -52,26 +52,18 @@ signUpForm.addEventListener('submit',function(e) {
     user.password = document.getElementById('password').value;
 
     if (!user.name || !user.username || !user.password) {
-        var mainDiv = document.getElementById('main-content');
-        var errorAlert = document.createElement('div');
-        errorAlert.classList.add('alert','alert-danger','success-alert');
-        errorAlert.setAttribute('role','alert');
-        errorAlert.setAttribute('id','sign-in-error');
-        errorAlert.innerHTML = 'Os campos são obrigatórios!';
-        mainDiv.appendChild(errorAlert);
+        showErrorAlert(function() {
+            return 'Os campos são obrigatórios!';
+        })
     } else {
         var ld = document.getElementById('loader');
         ld.style.display = 'block';
         this.style.display = 'none';
         this.reset();
         postJsonData('https://tads-trello.herokuapp.com/api/trello/users/new',JSON.stringify(user),function(response) {
-            var mainDiv = document.getElementById('main-content');
-            var successAlert = document.createElement('div');
-            successAlert.classList.add('alert','alert-success','success-alert');
-            successAlert.setAttribute('role','alert');
-            successAlert.setAttribute('id','sign-up-success');
-            successAlert.innerHTML = 'Cadastro realizado com sucesso! Faça login na sua conta!';
-            mainDiv.appendChild(successAlert);
+            showSuccessAlert(function() {
+                return 'Cadastro realizado com sucesso! Faça login na sua conta!';
+            });
             loginForm.style.display = 'block';
             ld.style.display = 'none';
             changeMode.innerHTML = 'Ainda não tem conta? ';   // <- Tá esquisito isso. Código repetido!!!!
@@ -148,14 +140,24 @@ loginForm.addEventListener('submit', function(e) {
 });
 
 
-function showErrorAlert(cbkErrorMessage) {
+function showErrorAlert(cbErrorMessage) {
     var mainDiv = document.getElementById('main-content');
     var errorAlert = document.createElement('div');
     errorAlert.classList.add('alert','alert-danger','success-alert');
     errorAlert.setAttribute('role','alert');
     errorAlert.setAttribute('id','sign-in-error');
-    errorAlert.innerHTML = cbkErrorMessage();
+    errorAlert.innerHTML = cbErrorMessage();
     mainDiv.appendChild(errorAlert);
+}
+
+function showSuccessAlert(cbSuccessAlert) {
+    var mainDiv = document.getElementById('main-content');
+    var successAlert = document.createElement('div');
+    successAlert.classList.add('alert','alert-success','success-alert');
+    successAlert.setAttribute('role','alert');
+    successAlert.setAttribute('id','sign-up-success');
+    successAlert.innerHTML = cbSuccessAlert();
+    mainDiv.appendChild(successAlert);
 }
 
 function postJsonData(url,jsonData,successCallback,failcallback){
