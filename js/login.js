@@ -56,6 +56,10 @@ signUpForm.addEventListener('submit',function(e) {
         errorAlert.innerHTML = 'Os campos são obrigatórios!';
         mainDiv.appendChild(errorAlert);
     } else {
+        var ld = document.getElementById('loader');
+        ld.style.display = 'block';
+        this.style.display = 'none';
+        this.reset();
         postJsonData('https://tads-trello.herokuapp.com/api/trello/users/new',JSON.stringify(user),function(response) {
             var mainDiv = document.getElementById('main-content');
             var successAlert = document.createElement('div');
@@ -65,11 +69,20 @@ signUpForm.addEventListener('submit',function(e) {
             successAlert.innerHTML = 'Cadastro realizado com sucesso! Faça login na sua conta!';
             mainDiv.appendChild(successAlert);
             loginForm.style.display = 'block';
-            signUpForm.style.display = 'none';
+            ld.style.display = 'none';
             changeMode.innerHTML = 'Ainda não tem conta? ';   // <- Tá esquisito isso. Código repetido!!!!
             change.innerHTML = 'Cadastre-se';
         },function(response,status) {
-            alert('falha na operação! O serviço retornou código '+status);
+            ld.style.display = 'none';
+            signUpForm.style.display = 'block';
+            signUpForm.reset();
+            var mainDiv = document.getElementById('main-content');
+            var errorAlert = document.createElement('div');
+            errorAlert.classList.add('alert','alert-danger','success-alert');
+            errorAlert.setAttribute('role','alert');
+            errorAlert.setAttribute('id','sign-in-error');
+            errorAlert.innerHTML = 'Ocorreu um erro. Código '+status;
+            mainDiv.appendChild(errorAlert);
         });
     }
     
@@ -79,16 +92,16 @@ signUpForm.addEventListener('submit',function(e) {
 loginForm.addEventListener('submit', function(e) {
     e.preventDefault();
     var user = {
-        name:'',
+        username:'',
         password:''
     };
-    user.name = document.getElementById('username-login').value;
+    user.username = document.getElementById('username-login').value;
     user.password = document.getElementById('password-login').value;
     var alertElement = document.getElementById('sign-in-error');
     if(alertElement) {
         alertElement.parentNode.removeChild(alertElement);
     }
-    if(!user.name || !user.password) {
+    if(!user.username || !user.password) {
         var mainDiv = document.getElementById('main-content');
         var errorAlert = document.createElement('div');
         errorAlert.classList.add('alert','alert-danger','success-alert');
@@ -99,12 +112,20 @@ loginForm.addEventListener('submit', function(e) {
     } else {
         //enviar dados
         console.log(user);
+        var ld = document.getElementById('loader');
+        ld.style.display = 'block';
+        this.style.display = 'none';
+        this.reset();
         postJsonData('https://tads-trello.herokuapp.com/api/trello/login',JSON.stringify(user),function(response) {
             // pegar resposta
+            
             console.log(JSON.parse(response));
-            // verificar se recebeu o token
+            
         },function(response,status) {
             console.log(response,status);
+            ld.style.display = 'none';
+            loginForm.style.display = 'block';
+            loginForm.reset();
         });        
     }
 });
