@@ -115,12 +115,28 @@ loginForm.addEventListener('submit', function(e) {
         var ld = document.getElementById('loader');
         ld.style.display = 'block';
         this.style.display = 'none';
-        this.reset();
         postJsonData('https://tads-trello.herokuapp.com/api/trello/login',JSON.stringify(user),function(response) {
-            // pegar resposta
-            
-            console.log(JSON.parse(response));
-            
+
+            var responseObj = JSON.parse(response);
+            var accessToken = responseObj.token;
+            console.log(accessToken);
+            var storeUser = {
+                username: user.username,
+                token: accessToken
+            }
+            var checkBox = document.getElementById('check').checked;
+
+            console.log(storeUser);
+            console.log(checkBox);
+            if(checkBox) {
+                localStorage.setItem('userData', JSON.stringify(storeUser));
+            } else {
+                sessionStorage.setItem('userData', JSON.stringify(storeUser));
+            }
+
+            window.location.assign('index.html');
+
+
         },function(response,status) {
             console.log(response,status);
             ld.style.display = 'none';
