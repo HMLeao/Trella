@@ -123,7 +123,7 @@ loginForm.addEventListener('submit', function(e) {
                 sessionStorage.setItem('userData', JSON.stringify(storeUser));
             }
 
-            window.location.assign('index.html');
+            window.location.assign('boards.html');
 
 
         },function(response,status) {
@@ -160,17 +160,5 @@ function showSuccessAlert(cbSuccessAlert) {
     mainDiv.appendChild(successAlert);
 }
 
-function postJsonData(url,jsonData,successCallback,failcallback){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            successCallback(xhttp.responseText);
-        } else if(xhttp.readyState == 4 && xhttp.status != 200) {
-            failcallback(xhttp.responseText,xhttp.status);
-        }
-    }
-    xhttp.open('POST',url);
-    xhttp.setRequestHeader('Content-Type', 'application/json');
-    xhttp.send(jsonData);
-}
+
 
