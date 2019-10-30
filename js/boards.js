@@ -1,21 +1,3 @@
-
-// window.addEventListener('load', function () {
-//     user = JSON.parse(sessionStorage.getItem("userData")) || JSON.parse(localStorage.getItem("userData"));
-//     if (!user) {
-//         window.location.assign('login.html');
-//     } else {
-//         token = user.token;
-//         getJsonData('https://tads-trello.herokuapp.com/api/trello/users/', token, function (response) {
-//             user = JSON.parse(response);
-//             document.getElementById('user-name').innerHTML = user.name;
-//             }, function (response) {
-
-//         });
-//     }
-// });
-// var user;
-
-// var user = JSON.parse(sessionStorage.getItem("userData")) || JSON.parse(localStorage.getItem("userData"));
 var boards;
 //cadastrar um quadro  
 (function getBoards() {
@@ -41,6 +23,8 @@ var boards;
     });
 })();
 
+
+
 function noBoardFound() {
     // Elemento boards --> conatainer para listar os quadros
     var boardsDiv = document.getElementById('boards');
@@ -52,14 +36,17 @@ function noBoardFound() {
     // Elemento que cria um card
     var cardDiv = document.createElement('div');
     cardDiv.classList = 'card';
-
+    cardDiv.setAttribute('id','add-new-board');
+    cardDiv.addEventListener('click', function() {
+        document.getElementById('board-add-div').style.display = 'block';
+    });
     // Elemento que define o corpo do card
     var boardCard = document.createElement('div');
     boardCard.classList = "card-body";
 
     // Elemento que irá conter o texto da mensagem de erro
     var noBoardFoundMsg = document.createElement('h5');
-    noBoardFoundMsg.innerHTML = "Nenhum quadro encontrado";
+    noBoardFoundMsg.innerHTML = "Adicionar quadro";
 
     
     boardCard.appendChild(noBoardFoundMsg);
@@ -67,3 +54,4 @@ function noBoardFound() {
     colDiv.appendChild(cardDiv);
     boardsDiv.appendChild(colDiv);
 }
+

@@ -105,7 +105,7 @@ loginForm.addEventListener('submit', function(e) {
         ld.style.display = 'block';
         this.style.display = 'none';
         postJsonData('https://tads-trello.herokuapp.com/api/trello/login',JSON.stringify(user),function(response) {
-
+            console.log(response);
             var responseObj = JSON.parse(response);
             var accessToken = responseObj.token;
             console.log(accessToken);
@@ -122,7 +122,6 @@ loginForm.addEventListener('submit', function(e) {
             } else {
                 sessionStorage.setItem('userData', JSON.stringify(storeUser));
             }
-
             window.location.assign('boards.html');
 
 
@@ -159,6 +158,3 @@ function showSuccessAlert(cbSuccessAlert) {
     successAlert.innerHTML = cbSuccessAlert();
     mainDiv.appendChild(successAlert);
 }
-
-
-
