@@ -133,8 +133,24 @@ addBoard.addEventListener('submit', function(e) {
         token: user.token
     }
     postJsonData('https://tads-trello.herokuapp.com/api/trello/boards/new',JSON.stringify(newBoard),function(response) {
-        window.location.reload(ture);
+        window.location.reload(true);
     }, function (response) {
         alert('não foi possível cadastrar o quadro.'+response);
+    });
+});
+
+var deleteBut = document.getElementById('delete-all');
+deleteBut.addEventListener('click', function(e) {
+    boards.forEach(function(item) {
+        var boardInfo = {
+            board_id: item.id,
+            token: user.token
+        }
+        console.log(boardInfo);
+        deleteJsonData('https://tads-trello.herokuapp.com/api/trello/boards/delete',JSON.stringify(boardInfo), function(response) {
+            console.log(response);
+        }, function(response) {
+            console.log(response);
+        });
     });
 });
