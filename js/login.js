@@ -37,7 +37,7 @@ change.addEventListener('click',function(event) {
 signUpForm.addEventListener('submit',function(e) {
     e.preventDefault();
     var user = {
-        name:'',
+        name:'', 
         username:'',
         password:''
     };

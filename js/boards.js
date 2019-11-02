@@ -1,4 +1,28 @@
 var boards;
+
+class List {
+    constructor(array) {
+        this.itens = arrary;
+        this.length = array.length;
+    };
+
+    getSize() {
+        return this.length;
+    }
+
+    addItem(item) {
+
+    }
+
+    removeItem(idx) {
+
+    }
+
+    getItem(idx) {
+
+    }
+}
+
 //cadastrar um quadro  
 function getBoards() {
     getJsonData('https://tads-trello.herokuapp.com/api/trello/users/', user.token, function (response) {
