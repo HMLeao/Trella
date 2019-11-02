@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/boards.css">
     <!-- Google fonts -->
@@ -22,13 +22,17 @@
 <body>
     <!-- navbar -->
     <nav class="navbar  navbar-top navbar-expand-lg navbar-expand-md navbar-expand-sm fixed-top ">
-        <span id="trella-title"><i id="quadros-ico" class="fab fa-trello"></i>Trella</span>
+        <span id="trella-title">
+            <i id="quadros-ico" class="fab fa-trello"></i>Trella</span>
         <ul class="left-items navbar-nav mr-4">
             <li class="nav-item t-item">
-                <a id="home-link" class="nav-link" href="#"><i class="fas fa-home"></i></a>
+                <a id="home-link" class="nav-link" href="#">
+                    <i class="fas fa-home"></i>
+                </a>
             </li>
             <li class="nav-item t-item">
-                <a id="quadros-btn" class="nav-link" href="#"><i id="quadros-ico" class="fab fa-trello"></i>Quadros</a>
+                <a id="quadros-btn" class="nav-link" href="#">
+                    <i id="quadros-ico" class="fab fa-trello"></i>Quadros</a>
             </li>
             <li>
                 <form>
@@ -38,13 +42,19 @@
         </ul>
         <ul class="right-items navbar-nav ">
             <li class="nav-item t-item">
-                <a class="nav-link" href="#"><i class="fas fa-plus"></i></a>
+                <a class="nav-link" href="#">
+                    <i class="fas fa-plus"></i>
+                </a>
             </li>
             <li class="nav-item t-item">
-                <a class="nav-link" href="#"><i class="fas fa-info-circle"></i></a>
+                <a class="nav-link" href="#">
+                    <i class="fas fa-info-circle"></i>
+                </a>
             </li>
             <li class="nav-item t-item">
-                <a class="nav-link" href="#"><i class="far fa-bell"></i></a>
+                <a class="nav-link" href="#">
+                    <i class="far fa-bell"></i>
+                </a>
             </li>
             <li class="user-thumbnail ">
                 <svg width="2em" height="2em">
@@ -59,27 +69,26 @@
 
     <!-- board -->
     <div class="container-fluid boards-list main-content">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <h5>
-                    Quadros de <span id="user-name"></span>
+                    Quadros de
+                    <span id="user-name"></span>
                 </h5>
             </div>
         </div>
         <div id="boards" class="row justify-content-center">
         </div>
         <div id="board-add-div" class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="col-lg-3 col-md-3 col-sm-3">
                 <form id="board-add-form" action="#" method="POST" style="display: block">
                     <div class="form-group">
                         <label for="username-login">Nome do quadro</label>
-                        <input type="text" class="form-control" id="username-login" aria-describedby="emailHelp"
-                            placeholder="einstein123" autofocus name="username">
+                        <input type="text" class="form-control" id="board-name" placeholder="General Relativity" autofocus name="board-name">
                     </div>
                     <div class="form-group">
                         <label for="password-login">Cor</label>
-                        <input type="password" class="form-control" id="password-login" placeholder="q9oamh1t"
-                            name="password">
+                        <input type="color" class="form-control" id="board-color" name="board-color">
                     </div>
                     <button type="submit" class="btn btn-primary">Criar</button>
                 </form>
@@ -92,14 +101,11 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <!-- main.js -->
     <script src="js/apputils.js"></script>
